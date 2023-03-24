@@ -1,21 +1,25 @@
 package br.com.fiap.progamer.dao;
 
-import java.util.ArrayList;
-
 import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import br.com.fiap.progamer.model.SetupModel;
 
 @Named
 public class SetupDao {
 	
-	ArrayList<SetupModel> setups = new ArrayList<>();
+	@PersistenceContext
+	private EntityManager entityManager;
 	
-	public void salvar(SetupModel setupModel) {
-		setups.add(setupModel);
+	public SetupDao(EntityManager entityManager) {
+		this.entityManager = entityManager;
 	}
 	
-	public void listarSetups() {
-		setups.forEach(System.out::println);
+	@Transactional
+	public void save(SetupModel setupModel) {
+		this.entityManager.merge(setupModel);
 	}
+	
 }
