@@ -7,45 +7,48 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+
 </h:head>
 
-<h:body>
+<h:body> 
 	<div id="header">
 		<ui:insert name="header">
 			<ui:include src="/templates/menu.xhtml" />
 		</ui:insert>
 	</div>
-	<br/>
-	<div id="body">
-		<h:form>
-			<p:messages id="messages" showDetail="false" closable="true">
-				<p:autoUpdate/>
-			</p:messages>
-			<br/>
-			
-			<p:panel id="panel">
-				<h2><strong>New Setup</strong></h2>
-				<h:panelGrid columns="2" cellpadding="4">
-					<h:outputText value="Name " />
-					<p:inputText id="name" value="#{setupBean.setupModel.name}" required="true" requiredMessage="Name é obrigatório!"/>
-					
-					<h:outputText value="Description " />
-					<p:inputTextarea id="description" value="#{setupBean.setupModel.description}" required="true" requiredMessage="Description é obrigatório!"
-					validatorMessage="Desctiption precisa ter enter 10 e 50 caracteres">
-						<f:validateLength minimum="10" maximum="50"/>
-					</p:inputTextarea>
-					
-					<h:outputText value="Price " />
-					<p:inputText id="price" value="#{setupBean.setupModel.price}" required="true" requiredMessage="Price é obrigatório!"
-					validatorMessage="Valor mínimo tem que ser maior que 0!">
-						<f:validateDoubleRange minimum="0.1"/>
-					</p:inputText>
-					
-					<p:commandButton value="Save" icon="pi pi-save" action="#{setupBean.save()}" update="panel"/>
-					<p:commandButton value="Cancel" icon="pi pi-times" styleClass="ui-button-secondary"/>
-				</h:panelGrid>
-			</p:panel>
-		</h:form>
-	</div>
+	<br />
+
+	<h:form id="new-setup">
+		<p:messages id="messages" showDetail="false" closable="true">
+			<p:autoUpdate />
+		</p:messages>
+
+		<p:panel id="panel">
+			<h2>New Setup</h2>
+			<h:panelGrid columns="2" cellpadding="4">
+				<h:outputText value="Name " />
+				<p:inputText id="name" value="#{setupBean.setup.name}"
+					required="true" requiredMessage="Name é obrigatório" />
+				<h:outputText value="Description" />
+				<p:inputTextarea id="description"
+					value="#{setupBean.setup.description}" required="true"
+					requiredMessage="Description é obrigatório"
+					validatorMessage="Mínimo de 50 caracteres">
+					<f:validateLength minimum="50" />
+				</p:inputTextarea>
+				<h:outputText value="Price" />
+				<p:inputText id="price" value="#{setupBean.setup.price}"
+					required="true" converterMessage="Tipo de price inválido"
+					requiredMessage="Price é obrigatório"
+					validatorMessage="Valor mínimo maior que zero">
+					<f:validateDoubleRange minimum="0.01" />
+				</p:inputText>
+				<p:commandButton id="submit" value="Save"
+					action="#{setupBean.save()}" icon="pi pi-save" update="panel"/>
+				<p:commandButton id="cancel" value="Cancel" action="home.xhtml"
+					styleClass="ui-button-secondary" icon="pi pi-times" update="panel" />
+			</h:panelGrid>
+		</p:panel>
+	</h:form>
 </h:body>
 </html>

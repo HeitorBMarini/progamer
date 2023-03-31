@@ -5,6 +5,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
+
 <h:head>
 <style type="text/css">
 	.ui-tabmenu-nav {
@@ -21,10 +22,11 @@
 		padding: 0px !important;
 	}
 </style>
+
 </h:head>
-<h:body style="background-color:#bbbbbb;">
-	<div id="header">
-		<div class="card">
+<h:body style="background-color:#f8f9fa;">
+	<h:form id="form_menu">
+		<p:card>
 			<p:tabMenu activeIndex="#{param.i}">
 				<p:menuitem value="Home" url="home.xhtml"
 					icon="pi pi-fw pi-home">
@@ -34,13 +36,13 @@
 					icon="pi pi-fw pi-desktop">
 					<f:param name="i" value="1" />
 				</p:menuitem>
-				<p:menuitem value="Profile" url="profile.xhtml"
+				<p:menuitem value="Profile"  url="profile.xhtml"
 					icon="pi pi-fw pi-user">
 					<f:param name="i" value="2" />
 				</p:menuitem>
 			</p:tabMenu>
-		</div>
-	</div>
-
+		</p:card>
+	</h:form>
+	
 </h:body>
 </html>
