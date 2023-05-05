@@ -15,7 +15,82 @@
 			<ui:include src="/templates/menu.xhtml" />
 		</ui:insert>
 	</div>
-	<br/>
-	<p:panel><h2>PROFILE</h2></p:panel>
+	<br />
+	<p:panel>
+		<div class="card">
+			<h:form id="form">
+				<p:growl id="growl" showDetail="true"/>
+
+
+				<p:toolbar>
+					<p:toolbarGroup>
+						<p:commandButton value="New" icon="pi pi-plus"
+							update=":dialogs:manage-product-content"
+							oncomplete="PF('manageProductDialog').show()"
+							styleClass="ui-button-success" style="margin-right: .5rem">
+							<p:resetInput target=":dialogs:manage-product-content" />
+						</p:commandButton>
+					</p:toolbarGroup>
+				</p:toolbar>
+
+				<p:dataTable id="profileTable" var="profile"
+					value="#{profileBean.findAll()}">
+					<p:column headerText="Name">
+						#{profile.name}
+					</p:column>
+					<p:column headerText="Email">
+						#{profile.email}
+					</p:column>
+					<p:column headerText="Profile">
+						#{profile.profile}
+					</p:column>
+				</p:dataTable>
+			</h:form>
+
+			<h:form id="dialogs">
+				<p:dialog header="New Profile" showEffect="fade" modal="true"
+					widgetVar="manageProductDialog" responsive="true">
+					<p:messages id="msg" showDetail="false" closable="true">
+						<p:autoUpdate />
+					</p:messages>
+
+					<p:outputPanel id="manage-product-content" class="ui-fluid">
+						<p:outputPanel>
+							<div class="field">
+								<p:outputLabel for="name">Name</p:outputLabel>
+								<p:inputText id="name" value="#{profileBean.profile.name}"
+									required="true" requiredMessage="Name é obrigatório" />
+							</div>
+							<div class="field">
+								<p:outputLabel for="email">Email</p:outputLabel>
+								<p:inputText id="email" value="#{profileBean.profile.email}"
+									required="true" requiredMessage="Email é obrigatório" />
+							</div>
+							<div class="field">
+								<p:outputLabel for="profile">Profile</p:outputLabel>
+								<p:selectOneRadio id="profile"
+									value="#{profileBean.profile.profile}" layout="responsive"
+									columns="2" required="true"
+									requiredMessage="Profile é obrigatório">
+									<f:selectItem itemLabel="User" itemValue="User" />
+									<f:selectItem itemLabel="Admin" itemValue="Admin" />
+								</p:selectOneRadio>
+							</div>
+							<div class="field">
+								<p:outputLabel for="password">Password</p:outputLabel>
+								<p:password id="password"
+									value="#{profileBean.profile.password}" required="true"
+									requiredMessage="Password é obrigatório" />
+							</div>
+							<br />
+							<p:commandButton update="dialogs:manage-product-content"
+								process="manage-product-content @this" value="Save"
+								actionListener="#{profileBean.save()}" />
+						</p:outputPanel>
+					</p:outputPanel>
+				</p:dialog>
+			</h:form>
+		</div>
+	</p:panel>
 </h:body>
 </html>

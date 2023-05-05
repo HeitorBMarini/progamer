@@ -9,8 +9,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
 
+import org.primefaces.model.file.UploadedFile;
+
 import br.com.fiap.dao.SetupDAO;
 import br.com.fiap.model.Setup;
+import br.com.fiap.service.UploadService;
 
 @Named
 @RequestScoped
@@ -22,6 +25,8 @@ public class SetupBean {
 	
     private Setup selectedSetup;
 
+    private UploadedFile file;
+    
 	public Setup getSetup() {
 		return setup;
 	}
@@ -32,7 +37,14 @@ public class SetupBean {
 	
 	@Transactional
 	public void save() {
+		
+		UploadService upload = new UploadService();
+		
 		if(setup.getName()!="" && setup.getDescription()!="") {
+			
+			upload.salvarArquivo(getFile());
+			setup.setFile(getFile().getFileName());
+			
 			setupDao.salvar(setup);
 			this.setup = new Setup();
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "As informações foram salvas com sucesso.", "INFO"));
@@ -51,5 +63,13 @@ public class SetupBean {
 
 	public void setSelectedSetup(Setup selectedSetup) {
 		this.selectedSetup = selectedSetup;
+	}
+
+	public UploadedFile getFile() {
+		return file;
+	}
+
+	public void setFile(UploadedFile file) {
+		this.file = file;
 	}
 }

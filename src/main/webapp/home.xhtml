@@ -27,7 +27,7 @@
 				<p:dataTable id="basicDT" var="setup" value="#{setupBean.findAll()}"
 					styleClass="noHeader">
 					<p:column exportable="false" style="width: 15%;">
-						<p:graphicImage name="images/setup_gamer.jpg"
+						<p:graphicImage name="images/#{setup.file}"
 							style="height: 140px" />
 					</p:column>
 					<p:column>
@@ -55,7 +55,7 @@
 								<h2>#{setupBean.selectedSetup.name}</h2>
 								<br />
 							</div>
-							<p:graphicImage name="images/setup_gamer.jpg" />
+							<p:graphicImage name="images/#{setupBean.selectedSetup.file}" />
 							<div>#{setupBean.selectedSetup.description}</div>
 							<h:outputText value="#{setupBean.selectedSetup.price}">
 								<f:convertNumber currencySymbol="R$" type="currency" />

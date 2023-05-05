@@ -18,7 +18,7 @@
 	</div>
 	<br />
 
-	<h:form id="new-setup">
+	<h:form id="new-setup" enctype="multipart/form-data">
 		<p:messages id="messages" showDetail="false" closable="true">
 			<p:autoUpdate />
 		</p:messages>
@@ -43,6 +43,10 @@
 					validatorMessage="Valor mínimo maior que zero">
 					<f:validateDoubleRange minimum="0.01" />
 				</p:inputText>
+				
+				<h:outputText value="Image" />
+				<p:fileUpload value="#{setupBean.file}" mode="simple" skinSimple="true"/>
+				
 				<p:commandButton id="submit" value="Save"
 					action="#{setupBean.save()}" icon="pi pi-save" update="panel"/>
 				<p:commandButton id="cancel" value="Cancel" action="home.xhtml"

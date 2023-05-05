@@ -12,7 +12,7 @@ public class Setup {
 	private String name;
 	private String description;
 	private double price;
-	
+	private String file;
 	
 	public long getId() {
 		return id;
@@ -42,6 +42,12 @@ public class Setup {
 	@Override
 	public String toString() {
 		return "Setup [name=" + name + ", description=" + description + ", price=" + price + "]";
+	}
+	public String getFile() {
+		return file;
+	}
+	public void setFile(String file) {
+		this.file = file;
 	}
 	
 }

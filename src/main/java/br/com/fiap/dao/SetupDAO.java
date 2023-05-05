@@ -36,7 +36,8 @@ public class SetupDAO {
 
 	public List<Setup> findAllSetups() {
 		@SuppressWarnings("unchecked")
-		TypedQuery<Setup> query = (TypedQuery<Setup>) entityManager.createQuery("SELECT e FROM Setup e");
+		TypedQuery<Setup> query = (TypedQuery<Setup>) entityManager.createQuery(
+				"SELECT e FROM Setup e");
 		return query.getResultList();
 	}
 
@@ -47,5 +48,10 @@ public class SetupDAO {
 		CriteriaQuery<Setup> all = cq.select(rootEntry);
 		TypedQuery<Setup> allQuery = entityManager.createQuery(all);
 		return allQuery.getResultList();
+	}
+
+	@Transactional
+	public void deletar(Setup setup) {
+		entityManager.remove(setup);
 	}
 }
