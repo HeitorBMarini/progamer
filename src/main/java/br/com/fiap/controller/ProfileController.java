@@ -162,4 +162,12 @@ public class ProfileController {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
             }
         }
-    }
+
+		@DeleteMapping("delete/{id}")
+	@ApiOperation("Excluindo Profile com JPA")
+	public ResponseEntity<String> delete2(@PathVariable("id") long id){
+		repository.deleteById(id);
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+	}
+}
+    
