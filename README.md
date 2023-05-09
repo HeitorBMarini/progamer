@@ -17,6 +17,7 @@ This project is a checkpoint of Digital Business Enablement course at FIAP. It c
 | GET | /profiles/{id} | Get a profile by ID |
 | POST | /profiles | Create a new profile |
 | PUT | /profiles/{id} | Update a profile |
+| PUT | /profiles/{id} | Parcial Update a profile |
 | DELETE | /profiles/{id} | Delete a profile |
 
 ## Getting Started
