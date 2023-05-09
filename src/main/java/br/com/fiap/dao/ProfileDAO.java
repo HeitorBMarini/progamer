@@ -21,7 +21,11 @@ public class ProfileDAO {
 	public ProfileDAO(EntityManager entityManager) {
 		this.entityManager = entityManager;
 	}
-	
+
+	public Profile buscarPorId(Long id) {
+		return entityManager.find(Profile.class, id);
+	}
+
 	@Transactional
 	public void salvar(Profile profile) {
 		entityManager.merge(profile);
@@ -33,4 +37,13 @@ public class ProfileDAO {
 				"SELECT e FROM Profile e");
 		return query.getResultList();
 	}
+
+	public Object findAllProfiles() {
+		return null;
+	}
+
+	public void remover(long id) {
+	}
+
+
 }
