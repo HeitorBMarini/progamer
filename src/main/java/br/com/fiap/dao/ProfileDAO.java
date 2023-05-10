@@ -45,5 +45,8 @@ public class ProfileDAO {
 	public void remover(long id) {
 	}
 
+    public void remover(Profile profile) {
+    }
+
 
 }
